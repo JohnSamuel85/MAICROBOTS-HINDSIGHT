@@ -1,0 +1,37 @@
+ORGANIZATIONAL MEMORY 1
+API Timeout Incident
+
+Payment API returned 504 errors during peak traffic.
+Database connections reached the maximum and checkout became slow.
+Increasing the API timeout did not fix the issue.
+Increasing the DB connection pool and optimizing the slow query fixed the issue.
+Lesson: investigate database connections and slow queries before increasing API timeouts.
+
+
+ORGANIZATIONAL MEMORY 2
+Customer Escalation
+
+An enterprise customer experienced frequent 429 errors while using API v2.
+The customer was sending many requests in a short period.
+Increasing the request limit temporarily helped but caused additional load.
+Rate-limit handling and request backoff solved the issue.
+Lesson: investigate request patterns and rate-limit behavior before simply increasing limits.
+
+
+ORGANIZATIONAL MEMORY 3
+Payment Failure
+
+Subscription renewals failed because Stripe webhook events were delayed and sometimes processed multiple times.
+Restarting the payment service temporarily reduced failures but did not solve the underlying issue.
+Webhook retry handling and idempotency checks fixed the issue.
+Lesson: investigate webhook delivery, retries, and idempotency.
+
+
+ORGANIZATIONAL MEMORY 4
+API Timeout During Traffic Spike
+
+Payment API experienced timeouts during a traffic spike.
+Application CPU was normal but database connections were saturated.
+Adding more application workers made database contention worse.
+Reducing unnecessary concurrency and tuning the database connection pool improved stability.
+Lesson: more application workers do not always solve a database bottleneck.
